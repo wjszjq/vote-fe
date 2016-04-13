@@ -29,7 +29,7 @@ class ShowController extends Controller
 
         $departmentId = empty($departmentId) ? $allDepartments[0]['id'] : $departmentId;
 
-        $select_deptEmployees = "SELECT * FROM employee WHERE department_id = 1 AND status = 1 ORDER BY vote DESC";
+        $select_deptEmployees = "SELECT * FROM employee WHERE department_id = 1 AND status = 1 ORDER BY votes DESC";
         $allDeptEmployees = $model->query($select_deptEmployees);
 
         //$this->ajaxReturn($allDeptEmployees, 'data.json');

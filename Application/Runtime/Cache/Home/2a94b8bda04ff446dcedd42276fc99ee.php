@@ -17,7 +17,7 @@
         <div class="webNav">
             <ul style="padding-left: 115px">
                 <?php if(!empty($departmentList)) { ?>
-                <?php if(is_array($departmentList)): foreach($departmentList as $key=>$vo): $departmentId = $_GET['departmentId']; $cur = ''; ?>
+                <?php if(is_array($departmentList)): foreach($departmentList as $key=>$vo): $departmentId = $_GET['departmentId']; $cur = ''; if(empty($departmentId)) { if($key == 0) { $cur = 'cur'; } } if($departmentId == $vo['id']) { $cur = 'cur'; } if($vo == end($departmentList)) { $cur = 'last'; if($departmentId == $vo['id']) { $cur = 'last cur'; } } ?>
 
                     <li name="city" cityId="<?php echo ($vo["id"]); ?>" class="<?php echo ($cur); ?>"><a href="<?php echo U('home/index/index',array('departmentId'=>$vo['id']));?>"><?php echo ($vo["name"]); ?></a></li><?php endforeach; endif; ?>
                 <?php } ?>
@@ -46,7 +46,7 @@
                             </div>
                             <div class="voteButton">
                                 <span employeeId="<?php echo ($vo["id"]); ?>" class="weiboVote"></span>
-                                <span class="voteNumber"><?php echo ($vo["vote"]); ?></span>
+                                <span class="voteNumber"><?php echo ($vo["votes"]); ?></span>
                             </div>
                         </li><?php endforeach; endif; ?>
                     <?php } ?>

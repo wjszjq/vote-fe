@@ -71,7 +71,7 @@
                             if (json) {
                                 for(var i=0;i<json.length;i++){
                                     console.log(json[i].context);
-                                    arr.push(json[i]['vote']);
+                                    arr.push(json[i]['votes']);
                                 }
                             }
                         },
@@ -145,7 +145,7 @@
                             if (json) {
                                 for(var i=0;i<json.length;i++){
                                     var jsonObj = {};
-                                    jsonObj.value = json[i]['vote'];
+                                    jsonObj.value = json[i]['votes'];
                                     jsonObj.name = json[i]['name'];
                                     arr.push(jsonObj);
 

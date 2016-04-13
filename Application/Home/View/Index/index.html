@@ -22,6 +22,22 @@
                         $departmentId = $_GET['departmentId'];
                         $cur = '';
 
+                        if(empty($departmentId)) {
+                            if($key == 0) {
+                                $cur = 'cur';
+                            }
+                        }
+
+                        if($departmentId == $vo['id']) {
+                            $cur = 'cur';
+                        }
+
+                        if($vo == end($departmentList)) {
+                            $cur = 'last';
+                            if($departmentId == $vo['id']) {
+                                $cur = 'last cur';
+                            }
+                        }
                     </php>
 
                     <li name="city" cityId="{$vo.id}" class="{$cur}"><a href="{:U('home/index/index',array('departmentId'=>$vo['id']))}">{$vo.name}</a></li>
@@ -55,7 +71,7 @@
                             </div>
                             <div class="voteButton">
                                 <span employeeId="{$vo.id}" class="weiboVote"></span>
-                                <span class="voteNumber">{$vo.vote}</span>
+                                <span class="voteNumber">{$vo.votes}</span>
                             </div>
                         </li>
                     </foreach>
