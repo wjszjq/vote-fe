@@ -21,10 +21,16 @@ class IndexController extends Controller {
 
         $start = ($pn - 1)*$ps;
 
-        $select_deptEmployees = "SELECT * FROM employee WHERE department_id = $departmentId AND status = 1 ORDER BY votes DESC LIMIT $start, $ps";
+        $select_deptEmployees = "SELECT * FROM employee WHERE department_id = $departmentId AND status = 1 ORDER BY vote DESC LIMIT $start, $ps";
         $allDeptEmployees = $model->query($select_deptEmployees);
 
-        $total = $model->query("SELECT COUNT(id) AS count FROM employee WHERE department_id = $departmentId")[0]['count'];
+        //$total = $model->query("SELECT COUNT(id) AS count FROM employee WHERE department_id = $departmentId")[0]['count'];
+        //$total = $model->query("SELECT COUNT(id) AS count FROM employee WHERE department_id = $departmentId");
+
+        $employeeW = array(
+            'department_id' => $departmentId,
+        );
+        $total = $model->where($employeeW)->count();
 
         $page  = new Page($total, $ps);
         $pageShow = $page->show();
@@ -74,7 +80,7 @@ class IndexController extends Controller {
         $dayEnd= mktime(23,59,59,$m,$d,$y);
         cookie('departmentId', json_encode($deptIds), ($dayEnd-time()));
 
-        $voteRes = M('employee')->where(array('id'=>$employeeId))->setInc('votes',1);
+        $voteRes = M('employee')->where(array('id'=>$employeeId))->setInc('vote',1);
         if($voteRes) {
             $result = array(
                 'flag' => 'success',

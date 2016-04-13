@@ -9,8 +9,8 @@ return array(
     'DB_TYPE'=>'mysql',
     'DB_HOST'=>'127.0.0.1', //主机地址
     'DB_NAME'=>'vote', //数据库名
-    'DB_USER'=>'vote',      //用户名
-    'DB_PWD'=>'vote',       //用户密码
+    'DB_USER'=>'root',      //用户名
+    'DB_PWD'=>'root',       //用户密码
     'DB_PORT'=>3306,        //端口
     'DB_PREFIX'=>'',        //表前缀，没有则不填
     'DB_FIELDS_CACHE'=>false,
