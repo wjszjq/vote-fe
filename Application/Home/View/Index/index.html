@@ -17,30 +17,31 @@
         <div class="webNav">
             <ul style="padding-left: 115px">
                 <php>if(!empty($departmentList)) { </php>
-                    <foreach name="departmentList" item="vo" key="key">
-                        <php>
-                            $departmentId = $_GET['departmentId'];
-                            $cur = '';
+                <foreach name="departmentList" item="vo" key="key">
+                    <php>
+                        $departmentId = $_GET['departmentId'];
+                        $cur = '';
 
-                            if(empty($departmentId)) {
-                                if($key == 0) {
-                                    $cur = 'cur';
-                                }
-                            }
-
-                            if($departmentId == $vo['id']) {
+                        if(empty($departmentId)) {
+                            if($key == 0) {
                                 $cur = 'cur';
                             }
+                        }
 
-                            if($vo == end($departmentList)) {
-                                $cur = 'last';
-                                if($departmentId == end($departmentList)['id']) {
-                                    $cur = 'last cur';
-                                }
+                        if($departmentId == $vo['id']) {
+                            $cur = 'cur';
+                        }
+
+                        if($vo == end($departmentList)) {
+                            $cur = 'last';
+                            if($departmentId == $vo['id']) {
+                                $cur = 'last cur';
                             }
-                        </php>
-                        <li name="city" cityId="{$vo.id}" class="{$cur}"><a href="{:U('home/index/index',array('departmentId'=>$vo['id']))}">{$vo.name}</a></li>
-                    </foreach>
+                        }
+                    </php>
+
+                    <li name="city" cityId="{$vo.id}" class="{$cur}"><a href="{:U('home/index/index',array('departmentId'=>$vo['id']))}">{$vo.name}</a></li>
+                </foreach>
                 <php> } </php>
             </ul>
         </div>
@@ -48,103 +49,106 @@
 </div>
 <!-- 网页内容  -->
 <div class="content pageVote">
-<div class="contentInner">
-<div class="mainLeft">
-<div class="leftTitle">
-    <foreach name="departmentList" item="department">
-        <php>if($department['id'] != $department) {continue;}</php>
-        <span>{$department.name}</span>
-    </foreach>
-</div>
-<div class="leftContent">
-<ul>
-<php>if(!empty($employeeList)) { </php>
-    <foreach name="employeeList" item="vo">
-        <li>
-            <div class="img">
-                <a href="#"><img src="{$avatarUrlPrefix}{$vo.avatar}" width="207px" height="207px" title="{$vo.name}"></a>
+    <div class="contentInner">
+        <div class="mainLeft">
+            <div class="leftTitle">
+                <foreach name="departmentList" item="department">
+                    <php>if($department['id'] != $department) {continue;}</php>
+                    <span>{$department.name}</span>
+                </foreach>
             </div>
-            <div class="text">
-                <h3 class="companyName"><a href="javascript:;">{$vo.name}</a></h3>
-                <p><a href="#">{$vo.description}</a></p>
-            </div>
-            <div class="voteButton">
-                <span employeeId="{$vo.id}" class="weiboVote"></span>
-                <span class="voteNumber">{$vo.votes}</span>
-            </div>
-        </li>
-    </foreach>
-<php> } </php>
+            <div class="leftContent">
+                <ul>
+                    <php>if(!empty($employeeList)) { </php>
+                    <foreach name="employeeList" item="vo">
+                        <li>
+                            <div class="img">
+                                <a href="#"><img src="{$avatarUrlPrefix}{$vo.avatar}" width="207px" height="207px" title="{$vo.name}"></a>
+                            </div>
+                            <div class="text">
+                                <h3 class="companyName"><a href="javascript:;">{$vo.name}</a></h3>
+                                <p><a href="#">{$vo.description}</a></p>
+                            </div>
+                            <div class="voteButton">
+                                <span employeeId="{$vo.id}" class="weiboVote"></span>
+                                <span class="voteNumber">{$vo.votes}</span>
+                            </div>
+                        </li>
+                    </foreach>
+                    <php> } </php>
 
-</ul>
-<!-- 分页 -->
-<div class="pageing">
-    {$pageShow}
-    <!--<div class="pWrap">
-        <span class="p-num">
-            <a class="pn-prev disabled"><i>&lt;</i><em>上一页</em></a>
-            <a href="javascript:;" class="curr">1</a>
-            <a href="javascript:;">2</a>
-            <a href="javascript:;">3</a>
-            <a href="javascript:;">4</a>
-            <a class="pn-next" href="javascript:;"><em>下一页</em><i>&gt;</i></a>
-       </span>
-       <span class="p-skip">
-            <em>共<b>100</b>页&nbsp;&nbsp;到第</em><input class="input-txt" type="text" value="1"> <em>页</em>
-            <a class="btn btn-default"href="javascript:;">确定</a>
-       </span>
-    </div>-->
-</div>
-<!-- 分页end-->
-</div>
-</div>
-<div class="mainRigtht">
-    <div class="rightTitle">
-        <span>TOP 20</span>
-    </div>
-    <div class="rightContent">
-        <div class="rightH">
-            <span class="sort">排名</span>
-            <span class="name">名字</span>
-            <span class="voteNum">得票数</span>
+                </ul>
+                <!-- 分页 -->
+                <div class="pageing">
+                    {$pageShow}
+                    <!--<div class="pWrap">
+                        <span class="p-num">
+                            <a class="pn-prev disabled"><i>&lt;</i><em>上一页</em></a>
+                            <a href="javascript:;" class="curr">1</a>
+                            <a href="javascript:;">2</a>
+                            <a href="javascript:;">3</a>
+                            <a href="javascript:;">4</a>
+                            <a class="pn-next" href="javascript:;"><em>下一页</em><i>&gt;</i></a>
+                       </span>
+                       <span class="p-skip">
+                            <em>共<b>100</b>页&nbsp;&nbsp;到第</em><input class="input-txt" type="text" value="1"> <em>页</em>
+                            <a class="btn btn-default"href="javascript:;">确定</a>
+                       </span>
+                    </div>-->
+                </div>
+                <!-- 分页end-->
+            </div>
         </div>
-        <ul>
-            <php>
-                if(!empty($employeeList)){
-                $count = 1;
-            </php>
-                <foreach name="employeeList" item="cVo" key="cKey">
+        <div class="mainRigtht">
+            <div class="rightTitle">
+                <span>TOP 20</span>
+            </div>
+            <div class="rightContent">
+                <div class="rightH">
+                    <span class="sort">排名</span>
+                    <span class="name">名字</span>
+                    <span class="voteNum">得票数</span>
+                </div>
+                <ul>
                     <php>
-                        if($count > 20) {break;}
-                        $class = '';
-                        $avatar = '';
-                        if($cKey == 0) {
+                        if(!empty($employeeList)){
+                        $count = 1;
+                    </php>
+                    <foreach name="employeeList" item="cVo" key="cKey">
+                        <php>
+                            if($count > 20) {break;}
+                            $class = '';
+                            $avatar = '';
+                            if($cKey == 0) {
                             $class = 'item item1';
                             $avatar = $cVo['avatar'];
-                        } else if($cKey == 1) {
+                            } else if($cKey == 1) {
                             $avatar = $cVo['avatar'];
                             $class = 'item item2';
-                        } else if($cKey == 2) {
+                            } else if($cKey == 2) {
                             $avatar = $cVo['avatar'];
                             $class = 'item item3';
-                        }
-                    </php>
-                    <li class="{$class}">
-                        <span class="sortNumber"><php>echo $cKey+1;</php></span>
-                        <php>if(!empty($avatar)) {</php>
+                            }
+                        </php>
+                        <li class="{$class}">
+                            <span class="sortNumber"><php>echo $cKey+1;</php></span>
+                            <php>if(!empty($avatar)) {</php>
                             <span class="companyLogo"><img src="{$avatarUrlPrefix}{$avatar}" width="49px; height="37px"></span>
-                        <php>}</php>
-                        <span class="companyName"><a href="#">{$cVo.name}</a></span>
-                        <span class="number">{$cVo.votes}</span>
-                    </li>
-                    <php>$count++;</php>
-                </foreach>
-            <php>}</php>
+                            <php>}</php>
+                            <span class="companyName"><a href="#">{$cVo.name}</a></span>
+                            <span class="number">{$cVo.votes}</span>
+                        </li>
+                        <php>$count++;</php>
+                    </foreach>
+                    <php>}</php>
 
-        </ul>
+                </ul>
+            </div>
+            <div>
+                <button><a href="{:U('home/show/index')}">查看结果</a> </button>
+            </div>
+        </div>
     </div>
-</div>
-</div>
 </div>
 <!-- 侧导航 -->
 <div class="sidebutton" style="display: none;">
@@ -188,8 +192,8 @@
         $(document).ready(function(){
             $('.pageing div').addClass('pWrap');
             var wrapHtml = '<span class="p-num" >';
-                wrapHtml += $('.pageing div').html();
-                wrapHtml +='</span>';
+            wrapHtml += $('.pageing div').html();
+            wrapHtml +='</span>';
             $('.pageing div').html(wrapHtml);
         });
 
@@ -217,7 +221,7 @@
                     console.log(e);
                     if(e.flag == 'success') {
                         var vote = parseInt(voteObj.siblings('.voteNumber').text());
-                            vote += 1;
+                        vote += 1;
                         voteObj.siblings('.voteNumber').text(vote);
                         layer.open({content: e.msg, time:2});
                     }

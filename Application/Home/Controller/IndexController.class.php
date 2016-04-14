@@ -24,7 +24,13 @@ class IndexController extends Controller {
         $select_deptEmployees = "SELECT * FROM employee WHERE department_id = $departmentId AND status = 1 ORDER BY votes DESC LIMIT $start, $ps";
         $allDeptEmployees = $model->query($select_deptEmployees);
 
-        $total = $model->query("SELECT COUNT(id) AS count FROM employee WHERE department_id = $departmentId")[0]['count'];
+        //$total = $model->query("SELECT COUNT(id) AS count FROM employee WHERE department_id = $departmentId")[0]['count'];
+        //$total = $model->query("SELECT COUNT(id) AS count FROM employee WHERE department_id = $departmentId");
+
+        $employeeW = array(
+            'department_id' => $departmentId,
+        );
+        $total = $model->where($employeeW)->count();
 
         $page  = new Page($total, $ps);
         $pageShow = $page->show();
