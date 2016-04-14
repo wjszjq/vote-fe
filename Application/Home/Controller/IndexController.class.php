@@ -53,6 +53,10 @@ class IndexController extends Controller {
 
         $ip = $_SERVER["REMOTE_ADDR"];
         $departmentId = I('post.departmentId');
+        $model = new Model();
+        $allDepartments = $model->query($select_allDepartments);
+        $departmentId = empty($departmentId) ? $allDepartments[0][id] : $departmentId;
+
         $employeeId = I('post.employeeId');
 
 //        cookie('departmentId', null);

@@ -12,12 +12,14 @@
 <body>
 <!-- 网页头部 -->
 <div class="head">
-    <div class="banner"></div>
+    <div class="login-right-panel">
+        <div class="login-logo"></div>
+    </div>
     <div class="nav" style="height: 35px;">
         <div class="webNav">
             <ul style="padding-left: 115px">
                 <?php if(!empty($departmentList)) { ?>
-                <?php if(is_array($departmentList)): foreach($departmentList as $key=>$vo): $departmentId = $_GET['departmentId']; $cur = ''; if(empty($departmentId)) { if($key == 0) { $cur = 'cur'; } } if($departmentId == $vo['id']) { $cur = 'cur'; } if($vo == end($departmentList)) { $cur = 'last'; if($departmentId == $vo['id']) { $cur = 'last cur'; } } ?>
+                <?php if(is_array($departmentList)): foreach($departmentList as $key=>$vo): $departmentId = $_GET['departmentId']; $cur = ''; ?>
 
                     <li name="city" cityId="<?php echo ($vo["id"]); ?>" class="<?php echo ($cur); ?>"><a href="<?php echo U('home/index/index',array('departmentId'=>$vo['id']));?>"><?php echo ($vo["name"]); ?></a></li><?php endforeach; endif; ?>
                 <?php } ?>
@@ -124,24 +126,23 @@
 <div class="footer">
     <div class="inner">
         <div class="footerLeft">
-            <img src="/Public/img/erweima.jpg" title="乐居设计师俱乐部二维码">
-            乐居设计师俱乐部二维码
+            <img src="/Public/img/simu-title.jpg" title="思目" style="height:160px;width:160px;">
         </div>
         <div class="footerRight">
             <div class="memberList">
-                <h5>中国室内设计新势力榜筹委会成员</h5>
+                <h5>江苏思目创意设计有限公司联系方式成员</h5>
                 <p>戴蓓、王伟、冀静、蒙辉、李可欣、赵敏、李艾薇、黄元浩、吴宏伟、石芳霞、邹爱兰、
                     伍细媚、王槐敏、王炳才、李珍、王顺尧、王成君、张建菊、崔志刚、宋健</p>
             </div>
             <div class="contactInfor">
-                <h5>中国室内设计新势力榜筹委会联系方式</h5>
-                <p>邮箱：design_newpower@sina.com</p>
-                <p>联系人：黄元浩 （新浪家居）13427517856&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;吴宏伟（箭牌瓷砖） 13790005924</p>
+                <h5>江苏思目创意设计有限公司联系方式</h5>
+                <p>邮箱：1493674313@superid.com</p>
+                <p>联系人：邹佳琪 （思目创意）13427517856&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;周维（思目创意） 13790005924</p>
             </div>
         </div>
     </div>
     <div class="copyRight">
-        <strong>版权所欲 新浪家居</strong>
+        <strong>版权所有 思目创意</strong>
     </div>
     <script type="text/javascript">
         $(document).ready(function(){
@@ -193,7 +194,7 @@
         //微博分享
         $('.weibo').click(function(){
             //微博分享的标题在这里修改
-            window.sharetitle = '投票开始啦！快来选出你们心目中的杰出家装公司#2016新浪家居杰出家装公司评选#';
+            window.sharetitle = '投票开始啦！快来选出你们心目中的优秀员工#2016思目创意优秀员工评选#';
 
             //微博分享的图片在这里修改【给的图片链接一定要是公网能够访问的图片】
             window.shareUrl = "http://image.xiaoqianghome.com/655/1438937479569.png";
@@ -230,7 +231,7 @@
             var shareQQ = new ShareTip();
 
             //QQ分享标题， 你们之前定的 # 号，QQ不让用，给你们换成 @ 符号了，要修改在下面修改
-            var title = '投票开始啦！快来选出你们心目中的杰出家装公司@2016新浪家居杰出家装公司评选@';
+            var title = '投票开始啦！快来选出你们心目中的优秀员工@2016思目创意优秀员工评选@';
 
             //QQ分享内容的链接，下面为当前页面地址
             var url = window.location.href;
