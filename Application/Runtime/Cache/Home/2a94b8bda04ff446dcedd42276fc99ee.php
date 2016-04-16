@@ -19,9 +19,8 @@
         <div class="webNav">
             <ul style="padding-left: 115px">
                 <?php if(!empty($departmentList)) { ?>
-                <?php if(is_array($departmentList)): foreach($departmentList as $key=>$vo): $departmentId = $_GET['departmentId']; $cur = ''; ?>
-
-                    <li name="city" cityId="<?php echo ($vo["id"]); ?>" class="<?php echo ($cur); ?>"><a href="<?php echo U('home/index/index',array('departmentId'=>$vo['id']));?>"><?php echo ($vo["name"]); ?></a></li><?php endforeach; endif; ?>
+                <?php if(is_array($departmentList)): foreach($departmentList as $key=>$vo): $cur = ''; ?>
+                    <li name="department" departmentId="<?php echo ($vo["id"]); ?>" class="<?php echo ($cur); ?>"><a href="<?php echo U('home/index/index',array('departmentId'=>$vo['id']));?>"><?php echo ($vo["name"]); ?></a></li><?php endforeach; endif; ?>
                 <?php } ?>
             </ul>
         </div>
@@ -32,7 +31,7 @@
     <div class="contentInner">
         <div class="mainLeft">
             <div class="leftTitle">
-                <?php if(is_array($departmentList)): foreach($departmentList as $key=>$department): if($department['id'] != $department) {continue;} ?>
+                <?php if(is_array($departmentList)): foreach($departmentList as $key=>$department): $departmentId = $_GET['departmentId']; if($department['id'] != $departmentId) {continue;} ?>
                     <span><?php echo ($department["name"]); ?></span><?php endforeach; endif; ?>
             </div>
             <div class="leftContent">
@@ -43,8 +42,8 @@
                                 <a href="#"><img src="<?php echo ($avatarUrlPrefix); echo ($vo["avatar"]); ?>" width="207px" height="207px" title="<?php echo ($vo["name"]); ?>"></a>
                             </div>
                             <div class="text">
-                                <h3 class="companyName"><a href="javascript:;"><?php echo ($vo["name"]); ?></a></h3>
-                                <p><a href="#"><?php echo ($vo["description"]); ?></a></p>
+                                <h3 class="companyName" style="text-align:center;"><a href="javascript:;" style="color:white;"><?php echo ($vo["name"]); ?></a></h3>
+                                <p style="color:white;">个人介绍：<?php echo ($vo["description"]); ?></p>
                             </div>
                             <div class="voteButton">
                                 <span employeeId="<?php echo ($vo["id"]); ?>" class="weiboVote"></span>
@@ -77,13 +76,13 @@
         </div>
         <div class="mainRigtht">
             <div class="rightTitle">
-                <span>TOP 20</span>
+                <span style="color:#CD0000">TOP 20</span>
             </div>
             <div class="rightContent">
                 <div class="rightH">
-                    <span class="sort">排名</span>
-                    <span class="name">名字</span>
-                    <span class="voteNum">得票数</span>
+                    <span class="sort" style="color:#CD0000">排名</span>
+                    <span class="name" style="color:#CD0000">名字</span>
+                    <span class="voteNum" style="color:#CD0000">得票数</span>
                 </div>
                 <ul>
                     <?php if(!empty($employeeList)){ $count = 1; ?>
@@ -101,8 +100,11 @@
 
                 </ul>
             </div>
-            <div>
-                <button><a href="<?php echo U('home/show/index');?>">查看结果</a> </button>
+            <div style="margin-top:10px;text-align:center;">
+                <?php if(!empty($departmentList)) { ?>
+                <?php if(is_array($departmentList)): foreach($departmentList as $key=>$department): $departmentId = $_GET['departmentId']; if($department['id'] != $departmentId) {continue;} ?>
+                    <button><a href="<?php echo U('home/show/index',array('departmentId'=>$department['id']));?>">查看<?php echo ($department["name"]); ?>投票统计结果</a> </button><?php endforeach; endif; ?>
+                <?php } ?>
             </div>
         </div>
     </div>

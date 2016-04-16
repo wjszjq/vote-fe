@@ -54,6 +54,7 @@ class IndexController extends Controller {
         $ip = $_SERVER["REMOTE_ADDR"];
         $departmentId = I('post.departmentId');
         $model = new Model();
+         $select_allDepartments = "SELECT * FROM department";
         $allDepartments = $model->query($select_allDepartments);
         $departmentId = empty($departmentId) ? $allDepartments[0][id] : $departmentId;
 

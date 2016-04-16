@@ -21,12 +21,9 @@
                 <php>if(!empty($departmentList)) { </php>
                 <foreach name="departmentList" item="vo" key="key">
                     <php>
-                        $departmentId = $_GET['departmentId'];
                         $cur = '';
-
                     </php>
-
-                    <li name="city" cityId="{$vo.id}" class="{$cur}"><a href="{:U('home/index/index',array('departmentId'=>$vo['id']))}">{$vo.name}</a></li>
+                    <li name="department" departmentId="{$vo.id}" class="{$cur}"><a href="{:U('home/index/index',array('departmentId'=>$vo['id']))}">{$vo.name}</a></li>
                 </foreach>
                 <php> } </php>
             </ul>
@@ -39,7 +36,8 @@
         <div class="mainLeft">
             <div class="leftTitle">
                 <foreach name="departmentList" item="department">
-                    <php>if($department['id'] != $department) {continue;}</php>
+                    <php>$departmentId = $_GET['departmentId'];
+                        if($department['id'] != $departmentId) {continue;}</php>
                     <span>{$department.name}</span>
                 </foreach>
             </div>
@@ -52,8 +50,8 @@
                                 <a href="#"><img src="{$avatarUrlPrefix}{$vo.avatar}" width="207px" height="207px" title="{$vo.name}"></a>
                             </div>
                             <div class="text">
-                                <h3 class="companyName"><a href="javascript:;">{$vo.name}</a></h3>
-                                <p><a href="#">{$vo.description}</a></p>
+                                <h3 class="companyName" style="text-align:center;"><a href="javascript:;" style="color:white;">{$vo.name}</a></h3>
+                                <p style="color:white;">个人介绍：{$vo.description}</p>
                             </div>
                             <div class="voteButton">
                                 <span employeeId="{$vo.id}" class="weiboVote"></span>
@@ -87,13 +85,13 @@
         </div>
         <div class="mainRigtht">
             <div class="rightTitle">
-                <span>TOP 20</span>
+                <span style="color:#CD0000">TOP 20</span>
             </div>
             <div class="rightContent">
                 <div class="rightH">
-                    <span class="sort">排名</span>
-                    <span class="name">名字</span>
-                    <span class="voteNum">得票数</span>
+                    <span class="sort" style="color:#CD0000">排名</span>
+                    <span class="name" style="color:#CD0000">名字</span>
+                    <span class="voteNum" style="color:#CD0000">得票数</span>
                 </div>
                 <ul>
                     <php>
@@ -130,8 +128,14 @@
 
                 </ul>
             </div>
-            <div>
-                <button><a href="{:U('home/show/index')}">查看结果</a> </button>
+            <div style="margin-top:10px;text-align:center;">
+                <php>if(!empty($departmentList)) { </php>
+                <foreach name="departmentList" item="department">
+                    <php>$departmentId = $_GET['departmentId'];
+                        if($department['id'] != $departmentId) {continue;}</php>
+                    <button><a href="{:U('home/show/index',array('departmentId'=>$department['id']))}">查看{$department.name}投票统计结果</a> </button>
+                </foreach>
+                <php>}</php>
             </div>
         </div>
     </div>

@@ -10,9 +10,12 @@
 </head>
 <body>
 <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div><?php echo ($selectDepartments[0]["name"]); ?>投票统计结果柱状图</div>
 <div id="bar" style="width: 600px;height:400px;"></div>
+<div><?php echo ($selectDepartments[0]["name"]); ?>投票统计结果饼状图</div>
 <div id="pie" style="width: 600px;height:400px;"></div>
 <script type="text/javascript">
+    var departmentId = "<?php echo ($departmentId); ?>";
     var myChart = echarts.init(document.getElementById('bar'));
     var option = {
         tooltip: {
@@ -30,7 +33,7 @@
                         type : 'post',
                         async : false, //同步执行
                         url : "<?php echo U('home/show/show');?>",
-                        data : {},
+                        data : {departmentId:departmentId},
                         dataType : 'json', //返回数据形式为json
                         success : function(json) {
                             if (json) {
@@ -65,7 +68,7 @@
                         type : 'post',
                         async : false, //同步执行
                         url : "<?php echo U('home/show/show');?>",
-                        data : {},
+                        data : {departmentId:departmentId},
                         dataType : 'json', //返回数据形式为json
                         success : function(json) {
                             if (json) {
@@ -92,8 +95,8 @@
     var myChart2 = echarts.init(document.getElementById('pie'));
     var option2 = {
         title : {
-            text: '开发部投票结果',
-            subtext: '欢迎投票',
+            //text: '开发部投票结果',
+            //subtext: '欢迎投票',
             x:'center'
         },
         tooltip : {
@@ -109,7 +112,7 @@
                     type : 'post',
                     async : false, //同步执行
                     url : "<?php echo U('home/show/show');?>",
-                    data : {},
+                    data : {departmentId:departmentId},
                     dataType : 'json', //返回数据形式为json
                     success : function(json) {
                         if (json) {
@@ -138,8 +141,8 @@
                     $.ajax({
                         type : 'post',
                         async : false, //同步执行
-                        url : "<?php echo U('home/show/show');?>",
-                        data : {},
+                        url : "<?php echo U('home/show/show',array('departmentId'=>departmentId));?>",
+                        data : {departmentId:departmentId},
                         dataType : 'json', //返回数据形式为json
                         success : function(json) {
                             if (json) {
