@@ -28,8 +28,13 @@
 </div>
 <!-- 网页内容  -->
 <div class="content pageVote">
+
     <div class="contentInner">
-        <div class="mainLeft">
+        <form class="form-wrapper" style="float:right;margin-bottom:10px;">
+            <input type="text" placeholder="Search here..." required>
+            <button type="submit">Search</button>
+        </form>
+        <div class="mainLeft" style="margin-top:32px;">
             <div class="leftTitle">
                 <?php if(is_array($departmentList)): foreach($departmentList as $key=>$department): $departmentId = $_GET['departmentId']; if($department['id'] != $departmentId) {continue;} ?>
                     <span><?php echo ($department["name"]); ?></span><?php endforeach; endif; ?>
@@ -42,7 +47,7 @@
                                 <a href="#"><img src="<?php echo ($avatarUrlPrefix); echo ($vo["avatar"]); ?>" width="207px" height="207px" title="<?php echo ($vo["name"]); ?>"></a>
                             </div>
                             <div class="text">
-                                <h3 class="companyName" style="text-align:center;"><a href="javascript:;" style="color:white;"><?php echo ($vo["name"]); ?></a></h3>
+                                <h3 class="companyName" style="text-align:center;"><a href="<?php echo U('home/employee/index',array('employeeId'=>$vo['id'],'departmentId'=>$departmentId));?>" style="color:white;"><?php echo ($vo["name"]); ?></a></h3>
                                 <p style="color:white;">个人介绍：<?php echo ($vo["description"]); ?></p>
                             </div>
                             <div class="voteButton">
@@ -105,6 +110,9 @@
                 <?php if(is_array($departmentList)): foreach($departmentList as $key=>$department): $departmentId = $_GET['departmentId']; if($department['id'] != $departmentId) {continue;} ?>
                     <button><a href="<?php echo U('home/show/index',array('departmentId'=>$department['id']));?>">查看<?php echo ($department["name"]); ?>投票统计结果</a> </button><?php endforeach; endif; ?>
                 <?php } ?>
+            </div>
+            <div style="margin-top:10px;text-align:center;">
+                <button><a href="<?php echo U('home/show/index',array('departmentId'=>$department['id']));?>">我要报名</a> </button>
             </div>
         </div>
     </div>
